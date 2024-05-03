@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example with Shoes</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #333; /* Couleur de fond */
+            color: #fff; /* Couleur du texte */
+            padding: 20px; /* Espacement intérieur */
+            text-align: center; /* Centrer le texte */
+        }
+
+        /* Style pour les liens dans le header */
+        header a {
+            color: #fff; /* Couleur du texte des liens */
+            text-decoration: none; /* Supprimer les soulignements */
+            margin: 0 10px; /* Espacement horizontal entre les liens */
+        }
+
+        .hero{
+            background-image: url('hero.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 500px;
+        }
+
+        .product {
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            padding: 20px;
+            cursor: pointer;
+        }
+
+        .product-image {
+            width: 100px;
+            height: 100px;
+            background-size: cover;
+            margin-bottom: 10px;
+        }
+
+        .product-list{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-description {
+            display: none; /* Initially hide the description */
+        }   
+
+        .show-description {
+            display: block; /* Show the description when the class is applied */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mon Site Web</h1>
+            <nav>
+                <a href="#">Accueil</a>
+                <a href="#">À Propos</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+            </nav>
+        </header>
+        <div class="hero"></div>
+        <div class="product-list">
+            <!-- Product elements will be dynamically added here -->
+        </div>
+    </div>
+    <script>
+        // Sample array of product data
+        var products = [
+            {
+                name: "Shoes 1",
+                description: "Description of Product 1",
+                imageUrl: "shoes1.jpeg"
+            },
+            {
+                name: "Shoes 2",
+                description: "Description of Product 2",
+                imageUrl: "shoes2.jpeg"
+            },
+            {
+                name: "Shoes 3",
+                description: "Description of Product 3",
+                imageUrl: "shoes3.jpeg"
+            }
+        ];
+
+        // Function to create and append product elements to the product list
+            // Function to create and append product elements to the product list
+        function renderProducts() {
+            var productList = document.querySelector('.product-list');
+
+            // Clear existing content
+            productList.innerHTML = '';
+
+            // Loop through each product in the array
+            products.forEach(function(product) {
+                // Create product element
+                var productElement = document.createElement('div');
+                productElement.classList.add('product');
+
+                // Create and set product image
+                var productImage = document.createElement('div');
+                productImage.classList.add('product-image');
+                productImage.style.backgroundImage = "url('" + product.imageUrl + "')";
+                productElement.appendChild(productImage);
+
+                // Create and set product name
+                var productName = document.createElement('div');
+                productName.classList.add('product-name');
+                productName.textContent = product.name;
+                productElement.appendChild(productName);
+
+                // Create and set product description
+                var productDescription = document.createElement('div');
+                productDescription.classList.add('product-description');
+                productDescription.textContent = product.description;
+                productElement.appendChild(productDescription);
+
+                // Add click event listener to toggle description visibility
+                productElement.addEventListener('click', function() {
+                    productDescription.classList.toggle('show-description');
+                });
+
+                // Append product element to the product list
+                productList.appendChild(productElement);
+            });
+        }
+
+        // Call the renderProducts function to initially populate the product list
+        renderProducts();
+    </script>
+</body>
+</html>
